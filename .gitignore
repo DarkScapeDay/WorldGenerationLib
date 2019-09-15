@@ -1,0 +1,6 @@
+# Datasource local storage ignored files
+/.idea/dataSources
+.lib/
+/target/*
+/lib/
+/test
