@@ -1,4 +1,4 @@
-package WorldGenerationUtils.FastNoiseGeneration;
+package worldgenerationutils.fastnoisegeneration;
 
 public abstract class NoiseFieldND
 {

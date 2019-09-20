@@ -1,6 +1,4 @@
-package WorldGenerationUtils.FastNoiseGeneration;
-
-import WorldGenerationUtils.Maths;
+package worldgenerationutils.fastnoisegeneration;
 
 public class Binary2DInterpolator extends BinaryNDInterpolator
 {
@@ -127,8 +125,8 @@ public class Binary2DInterpolator extends BinaryNDInterpolator
     {
         smartMoveTo(x, z);
 
-        float localEX = Maths.getHermite((float)(x & lengthMinus1)/length);
-        float localSZ = Maths.getHermite((float)(z & lengthMinus1)/length);
+        float localEX = getHermite((float)(x & lengthMinus1)/length);
+        float localSZ = getHermite((float)(z & lengthMinus1)/length);
         float localWX = 1f - localEX;
         float localNZ = 1f - localSZ;
 

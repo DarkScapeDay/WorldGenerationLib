@@ -1,4 +1,4 @@
-package WorldGenerationUtils.FastNoiseGeneration;
+package worldgenerationutils.fastnoisegeneration;
 
 import java.util.Random;
 
@@ -31,4 +31,9 @@ public abstract class BinaryNDInterpolator
     }
 
     abstract void moveToOrigin();
+
+    static float getHermite(float value)
+    {
+        return value*value*(-value*2 + 3);
+    }
 }
