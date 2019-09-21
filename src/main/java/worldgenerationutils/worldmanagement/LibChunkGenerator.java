@@ -28,16 +28,16 @@ public abstract class LibChunkGenerator extends ChunkGenerator
 
     public final String getName()
     {
-        return this.name;
+        return name;
     }
 
     @Override
     public final List<BlockPopulator> getDefaultPopulators(final World w)
     {
-        return this.blockPopulators;
+        return blockPopulators;
     }
 
-    protected abstract MaterialData getChunkData(World world, int blockX, int blockY, int blockZ, BiomeGrid biome);
+    protected abstract MaterialData getBlockData(World world, int blockX, int blockY, int blockZ, BiomeGrid biome);
 
     @Override
     public final ChunkData generateChunkData(World world, Random random, int chunkX, int chunkZ, BiomeGrid biome)
@@ -53,7 +53,7 @@ public abstract class LibChunkGenerator extends ChunkGenerator
             {
                 for (int relZ = 0, absZ = blockZ; relZ < 0x10; relZ++, absZ++)
                 {
-                    data.setBlock(relX, relY, relZ, getChunkData(world, absX, relY, absZ, biome));
+                    data.setBlock(relX, relY, relZ, getBlockData(world, absX, relY, absZ, biome));
                 }
             }
         }
