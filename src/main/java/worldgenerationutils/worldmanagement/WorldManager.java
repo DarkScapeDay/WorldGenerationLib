@@ -100,6 +100,12 @@ public final class WorldManager
     }
 
     @CheckForNull
+    public LibChunkGenerator getChunkGenerator(String chunkGeneratorName)
+    {
+        return chunkGenerators.get(chunkGeneratorName);
+    }
+
+    @CheckForNull
     private LibChunkGenerator readGenerator(String worldName) throws IOException
     {
         Objects.requireNonNull(worldName);
@@ -112,7 +118,7 @@ public final class WorldManager
 
         String generatorName = new String(Files.readAllBytes(file.toPath()));
 
-        LibChunkGenerator result = chunkGenerators.get(generatorName);
+        LibChunkGenerator result = getChunkGenerator(generatorName);
         if (result == null)
         {
             throw new IllegalStateException("World " + worldName + " had an invalid chunk generator called " + generatorName);
