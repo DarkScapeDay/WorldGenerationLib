@@ -1,11 +1,13 @@
 package worldgenerationutils.worldmanagement;
 
+import net.minecraft.server.v1_8_R3.MinecraftServer;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.annotation.CheckForNull;
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -143,16 +145,15 @@ public final class WorldManager
         }
     }
 
-    public World createWorld(String name)
-    {
-        return createWorld(name, null);
-    }
-
-    public World createWorld(String name, LibChunkGenerator chunkGenerator)
+    public World createWorld(String name, @Nullable LibChunkGenerator chunkGenerator)
     {
         if (!canCreateWorld(name))
         {
             throw new IllegalStateException("World " + name + " already exists!");
+        }
+        if (!MinecraftServer.getServer().isMainThread())
+        {
+            throw new IllegalStateException("Must call createWorld from main thread!");
         }
 
         WorldCreator creator = new WorldCreator(name);
