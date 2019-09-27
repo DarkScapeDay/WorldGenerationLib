@@ -12,9 +12,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public final class WorldManager
 {
@@ -105,6 +103,20 @@ public final class WorldManager
     public LibChunkGenerator getChunkGenerator(String chunkGeneratorName)
     {
         return chunkGenerators.get(chunkGeneratorName);
+    }
+
+    public List<LibChunkGenerator> getChunkGenerators()
+    {
+        List<LibChunkGenerator> chunkGenerators = new ArrayList<>(this.chunkGenerators.values());
+        chunkGenerators.sort(Comparator.comparing(LibChunkGenerator::getName));
+        return chunkGenerators;
+    }
+
+    public List<String> getChunkGeneratorNames()
+    {
+        List<String> chunkGeneratorNames = new ArrayList<>(this.chunkGenerators.keySet());
+        chunkGeneratorNames.sort(Comparator.naturalOrder());
+        return chunkGeneratorNames;
     }
 
     @CheckForNull
